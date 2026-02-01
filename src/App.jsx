@@ -5,7 +5,7 @@ import { Guitar } from './components/Guitar'
 import { db } from './data/db'
 
 export const App = () => {
-
+    //Persistencia en el localStorage
     function initialCart(){
       const localStorageCart = localStorage.getItem('cart')
       return localStorageCart ? JSON.parse(localStorageCart): []
@@ -16,7 +16,7 @@ export const App = () => {
       localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
     
-
+    //Agregar al carrito
     function addToCart(guitar){
       const itemIndex = cart.findIndex((item) => guitar.id===item.id)
       if (itemIndex===-1){
@@ -32,6 +32,7 @@ export const App = () => {
       }
     }
 
+    //Calcular el total del carrito
     function calculateTotal(){
       /*let total = 0
       for (const guitar of cart) {
@@ -42,6 +43,7 @@ export const App = () => {
       return total;
     }
 
+    //Ejercicio - Restar una guitarra del carrito desde el boton "-"
     function removeOneGuitar(id){
       const updatedCart = cart.map(item =>
         item.id === id
@@ -51,6 +53,7 @@ export const App = () => {
       setCart(updatedCart);
     }
 
+    //Ejercicio - Añadir una guitarra al carrito desde el boton de "+"
     function addOneGuitar(id) {
       const updatedCart = cart.map(item =>
         item.id === id
@@ -60,11 +63,13 @@ export const App = () => {
       setCart(updatedCart);
     }    
 
+    //Ejercicio - Quitar la guitarra completa del carrito
     function removeGuitar(id){
       const removeFromCart = cart.filter(item => item.id !== id)
       setCart(removeFromCart)
     }
 
+    //Ejercicio - Vaciar el carrito 
     function emptyCart(){
       let copiaCart = [...cart]
       copiaCart = []
